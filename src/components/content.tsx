@@ -6,10 +6,7 @@ import {
   Bot,
   Check,
   CheckCheck,
-  ChevronDown,
-  Code2,
   FileText,
-  Globe2,
   Hash,
   Layers,
   LayoutDashboard,
@@ -23,7 +20,6 @@ import {
   Sparkles,
   Video,
   WandSparkles,
-  Zap,
 } from 'lucide-react';
 import { services, packages, type Product } from '@/lib/catalog';
 import { money, tax, type Locale, type Text } from '@/lib/i18n';

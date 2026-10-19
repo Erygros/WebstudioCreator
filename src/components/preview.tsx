@@ -12,6 +12,7 @@ import {
   CirclePlay,
   Code2,
   Command,
+  FileText,
   Hash,
   Headphones,
   LayoutDashboard,
@@ -26,7 +27,6 @@ import {
   Sparkles,
   Video,
   Volume2,
-  Zap,
 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 const tabs = [
@@ -50,6 +50,30 @@ export function ProductPreview({
   const [command, setCommand] = useState('!socials');
   const reduced = useReducedMotion();
   const is = locale === 'de';
+  const previewTabs: Array<readonly [string, string, typeof Monitor]> = [...tabs];
+  if (!previewTabs.some(([id]) => id === initial)) {
+    const label =
+      initial === 'shorts'
+        ? 'Shorts'
+        : initial === 'mediakit'
+          ? 'Mediakit'
+          : initial === 'bot'
+            ? 'Bot'
+            : is
+              ? 'Kanal'
+              : 'Channel';
+    previewTabs.unshift([
+      initial,
+      label,
+      initial === 'shorts'
+        ? Video
+        : initial === 'mediakit'
+          ? FileText
+          : initial === 'bot'
+            ? Bot
+            : Monitor,
+    ]);
+  }
   return (
     <div className={`product-showcase ${compact ? 'compact' : ''}`}>
       <div className="showcase-toolbar">
@@ -58,7 +82,7 @@ export function ProductPreview({
           role="tablist"
           aria-label={is ? 'Produktvorschau' : 'Product preview'}
         >
-          {tabs.map(([id, label, Icon]) => (
+          {previewTabs.map(([id, label, Icon]) => (
             <button
               key={id}
               role="tab"
@@ -69,14 +93,15 @@ export function ProductPreview({
               onKeyDown={(e) => {
                 if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
                   e.preventDefault();
-                  const index = tabs.findIndex((t) => t[0] === id);
+                  const index = previewTabs.findIndex((t) => t[0] === id);
                   const next =
                     e.key === 'Home'
                       ? 0
                       : e.key === 'End'
-                        ? tabs.length - 1
-                        : (index + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-                  setActive(tabs[next][0]);
+                        ? previewTabs.length - 1
+                        : (index + (e.key === 'ArrowRight' ? 1 : -1) + previewTabs.length) %
+                          previewTabs.length;
+                  setActive(previewTabs[next][0]);
                   (e.currentTarget.parentElement?.children[next] as HTMLButtonElement)?.focus();
                 }
               }}

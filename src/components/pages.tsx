@@ -1,14 +1,5 @@
 import Link from 'next/link';
-import {
-  ArrowUpRight,
-  Database,
-  FileLock2,
-  FolderLock,
-  Info,
-  LockKeyhole,
-  Mail,
-  ShieldCheck,
-} from 'lucide-react';
+import { FolderLock, Info, LockKeyhole, ShieldCheck } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 import { company } from '@/lib/company';
 import { PageIntro, ButtonLink, path } from './content';

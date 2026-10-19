@@ -13,18 +13,10 @@ import {
   Plus,
   Send,
   Upload,
-  X,
 } from 'lucide-react';
-import { products, services, packages, getProduct, PRICE_VERSION } from '@/lib/catalog';
+import { services, packages, getProduct, PRICE_VERSION } from '@/lib/catalog';
 import { calculate, type Configuration } from '@/lib/pricing';
-import {
-  bookingSchema,
-  contactSchema,
-  platforms,
-  MAX_FILES,
-  MAX_TOTAL_BYTES,
-  type Booking,
-} from '@/lib/booking';
+import { bookingSchema, contactSchema, platforms, MAX_FILES, MAX_TOTAL_BYTES } from '@/lib/booking';
 import { money, tax, path, type Locale } from '@/lib/i18n';
 import { company } from '@/lib/company';
 const servicePrompt: Record<string, [string, string]> = {

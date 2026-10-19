@@ -19,6 +19,9 @@ export function Header({ locale }: { locale: Locale }) {
     setDark(document.documentElement.dataset.theme === 'dark');
   }, []);
   useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+  useEffect(() => {
     setMenu(false);
     setSearch(false);
   }, [pathname]);
@@ -63,6 +66,9 @@ export function Header({ locale }: { locale: Locale }) {
             className={menu ? 'main-nav is-open' : 'main-nav'}
             aria-label={locale === 'de' ? 'Hauptnavigation' : 'Main navigation'}
           >
+            <Link href={`/${locale}`} aria-current={pathname === `/${locale}` ? 'page' : undefined}>
+              {locale === 'de' ? 'Startseite' : 'Home'}
+            </Link>
             {navigation.map(([slug, de, en]) => (
               <Link
                 key={slug}

@@ -43,8 +43,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = slug[0] === 'services' && slug[1] ? getProduct(slug[1]) : undefined;
   const title = p?.name[locale as Locale] || titles[slug[0]]?.[locale === 'de' ? 0 : 1];
   return {
-    title: title || undefined,
-    description: p?.description[locale as Locale],
+    title:
+      title || (locale === 'de' ? 'Dein Content. Unser Handwerk.' : 'Your content. Our craft.'),
+    description:
+      p?.description[locale as Locale] ||
+      (locale === 'de'
+        ? 'Websites, Stream-Overlays, Discord-Server und Creator-Tools. Individuell gestaltet. Transparent kalkuliert.'
+        : 'Websites, stream overlays, Discord servers and creator tools. Individually crafted. Transparently priced.'),
     alternates: { languages: { de: `/de/${slug.join('/')}`, en: `/en/${slug.join('/')}` } },
     robots: { index: false, follow: true },
   };
