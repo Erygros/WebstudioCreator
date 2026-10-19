@@ -181,9 +181,6 @@ export function Footer({ locale }: { locale: Locale }) {
               ? 'Für deinen Content. Für das, was kommt.'
               : 'For your content. For what comes next.'}
           </p>
-          <span className="footer-location">
-            <span className="status-dot" /> Dortmund, Deutschland
-          </span>
         </div>
         <div>
           <span className="eyebrow">Studio</span>
@@ -195,7 +192,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
         <div>
           <span className="eyebrow">{locale === 'de' ? 'Lass uns sprechen' : 'Let’s talk'}</span>
-          <Link href={`/${locale}/contact`}>
+          <Link className="footer-project-link" href={`/${locale}/contact`}>
             {locale === 'de' ? 'Projekt anfragen' : 'Start a project'} <ArrowUpRight size={14} />
           </Link>
           <a href={`tel:${company.phoneHref}`}>{company.phone}</a>
